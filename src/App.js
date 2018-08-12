@@ -1,13 +1,32 @@
 import React, { Component } from 'react';
+
 import logo from './logo.svg';
 import './App.css';
+
 import DayPicker from 'react-day-picker';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
+import MomentLocaleUtils, {
+  formatDate,
+  parseDate
+} from 'react-day-picker/moment';
+
+import locales from './assets/locales.json';
+
 import 'react-day-picker/lib/style.css';
+
+import 'moment/locale/he';
+import 'moment/locale/ja';
+import 'moment/locale/ar';
+import 'moment/locale/de';
+import 'moment/locale/zh-cn';
+import 'moment/locale/vi';
+import 'moment/locale/gu';
+import 'moment/locale/ru';
 
 class App extends Component {
   state = {
-    selectedDay: null
+    selectedDay: null,
+    locale: 'ja'
   };
 
   handleDayClick = day => {
@@ -30,6 +49,12 @@ class App extends Component {
     );
   }
 
+  handleSelectChange = e => {
+    this.setState({
+      locale: e.target.value
+    });
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -39,8 +64,8 @@ class App extends Component {
             <h1 className="App-title">React-Calendar</h1>
           </header>
           <h1>Day Picker</h1>
-          <DayPicker onDayClick={this.handleDayClick} />
           {this.renderDay()}
+          <DayPicker onDayClick={this.handleDayClick} />
         </div>
         <div className="App">
           <h1>Input Picker</h1>
@@ -50,6 +75,37 @@ class App extends Component {
               showWeekNumbers: true,
               todayButton: 'Today'
             }}
+            formatDate={formatDate}
+            parseDate={parseDate}
+            placeholder={`${formatDate(new Date())}`}
+          />
+          <p>
+            In Hebrew, using <code>{'format="LL"'}</code>:
+          </p>
+          <DayPickerInput
+            formatDate={formatDate}
+            parseDate={parseDate}
+            format="LL"
+            placeholder={`${formatDate(new Date(), 'LL', 'he')}`}
+            dayPickerProps={{
+              locale: 'he',
+              localeUtils: MomentLocaleUtils
+            }}
+          />
+          <p>
+            <select onChange={this.handleSelectChange}>
+              {locales.map((l, i) => {
+                return (
+                  <option value={l.format} key={i}>
+                    {l.language}
+                  </option>
+                );
+              })}
+            </select>
+          </p>
+          <DayPicker
+            localeUtils={MomentLocaleUtils}
+            locale={this.state.locale}
           />
         </div>
       </React.Fragment>

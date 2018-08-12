@@ -1,0 +1,9 @@
+[
+  { "language": "Japanese", "format": "ja" },
+  { "language": "Arabic", "format": "ar" },
+  { "language": "German", "format": "de" },
+  { "language": "Chinese", "format": "zh-cn" },
+  { "language": "Vietnamese", "format": "vi" },
+  { "language": "Gujarati", "format": "gu" },
+  { "language": "Russian", "format": "ru" }
+]
