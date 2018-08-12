@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import DayPicker from 'react-day-picker';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
 class App extends Component {
@@ -13,7 +14,7 @@ class App extends Component {
     this.setState({ selectedDay: day });
   };
 
-  renderCalendar() {
+  renderDay() {
     let { selectedDay } = this.state;
     return selectedDay ? (
       <div>
@@ -31,14 +32,27 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">React-Calendar</h1>
-        </header>
-        <DayPicker onDayClick={this.handleDayClick} />
-        {this.renderCalendar()}
-      </div>
+      <React.Fragment>
+        <div className="App">
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <h1 className="App-title">React-Calendar</h1>
+          </header>
+          <h1>Day Picker</h1>
+          <DayPicker onDayClick={this.handleDayClick} />
+          {this.renderDay()}
+        </div>
+        <div className="App">
+          <h1>Input Picker</h1>
+          <DayPickerInput
+            dayPickerProps={{
+              month: new Date(2018, 10),
+              showWeekNumbers: true,
+              todayButton: 'Today'
+            }}
+          />
+        </div>
+      </React.Fragment>
     );
   }
 }
