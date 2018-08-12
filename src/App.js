@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import logo from './logo.svg';
 import './App.css';
+import 'react-day-picker/lib/style.css';
 
 import DayPicker from 'react-day-picker';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
@@ -11,8 +12,6 @@ import MomentLocaleUtils, {
 } from 'react-day-picker/moment';
 
 import locales from './assets/locales.json';
-
-import 'react-day-picker/lib/style.css';
 
 import 'moment/locale/he';
 import 'moment/locale/ja';
