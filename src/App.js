@@ -25,7 +25,7 @@ class App extends Component {
         </h3>
       </div>
     ) : (
-      <h3>Select a day</h3>
+      <h3>Select a day!</h3>
     );
   }
 
